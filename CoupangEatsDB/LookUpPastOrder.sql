@@ -6,25 +6,27 @@ SELECT f.name AS 식당명
         ,e.name AS 메뉴이름
         ,a.updatedAt AS 시간
         ,f.imageUrl AS 식당사진
+	,productCount AS 수량
+	,productCount * e.cost AS 금액
   FROM orders a
   LEFT JOIN ( SELECT id
-			          FROM user
+		FROM user
                 GROUP BY id) AS b
                 ON a.userId = b.id
 
   LEFT JOIN ( SELECT userId, id
-			          FROM cart
+		FROM cart
                 GROUP BY userId, id) AS c
                 ON a.userId = c.userId
 
   LEFT JOIN ( SELECT cartId, menuId, restaurantId
-			          FROM cartedmenu
+		FROM cartedmenu
                 GROUP BY cartId, menuId, restaurantId) AS d
                 ON c.id = d.cartId
               
-  LEFT JOIN ( SELECT id, name
-			          FROM menu
-                GROUP BY id, name) AS e
+  LEFT JOIN ( SELECT id, name, COUNT(id) AS 'productCount', cost
+		FROM menu
+                GROUP BY id, name, cost) AS e
                 ON e.id = d.menuId
                 
   LEFT JOIN ( SELECT id, name, imageUrl
