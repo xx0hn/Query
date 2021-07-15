@@ -1,7 +1,7 @@
 -- 1번 사용자의 과거 주문 내역 조회
 
 SELECT f.name AS 식당명
-		   ,CASE WHEN a.status = 0 THEN '배달 완료' 
+        ,CASE WHEN a.status = 0 THEN '배달 완료' 
         ELSE '배달 취소' END AS 배달여부
         ,e.name AS 메뉴이름
         ,a.updatedAt AS 시간
@@ -33,4 +33,5 @@ SELECT f.name AS 식당명
                 FROM restaurant
                 GROUP BY id, name, imageUrl) as f
                 ON f.id = d.restaurantId
- WHERE b.id = 1 AND f.name IS NOT NULL;
+ WHERE b.id = 1 AND f.name IS NOT NULL
+ ORDER BY a.updatedAt DESC;
