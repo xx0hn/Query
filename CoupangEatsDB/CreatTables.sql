@@ -236,3 +236,4 @@ ALTER TABLE restaurant ADD `delCost` TEXT NOT NULL COMMENT'배달비';
 ALTER TABLE restaurant ADD `imageUrl` TEXT NOT NULL COMMENT'식당사진';
 ALTER TABLE category ADD `imagUrl` TEXT NOT NULL COMMENT'카테고리사진';
 ALTER TABLE menu ADD `cost` TEXT NOT NULL COMMENT'카테고리사진';
+ALTER TABLE restaurant ADD `delTime` TEXT NOT NULL COMMENT'배달시간';
