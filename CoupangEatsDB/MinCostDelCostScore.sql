@@ -17,4 +17,4 @@ SELECT a.id AS 식당id
                 GROUP BY restaurantId ) AS b
                 ON a.id = b.restaurantId
   WHERE a.minCost <= 12000 AND a.delCost <=3000
-  ORDER BY starGrade desc;
+  ORDER BY starGrade DESC;
