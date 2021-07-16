@@ -1,2 +1,2 @@
 # Query
-Query practice Repo
+Query study Repo
