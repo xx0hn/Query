@@ -32,8 +32,7 @@ SELECT a.id AS 식당id
                	    , imageUrl
                     , contents
                     , cost
-		FROM menu
-		GROUP BY restaurantId) AS c
+		FROM menu ) AS c
 		ON a.id = c.restaurantId
  WHERE a.id = 1
  ORDER BY b.createdAt DESC;
