@@ -229,7 +229,22 @@ ALTER TABLE coupon COMMENT '쿠폰';
 ALTER TABLE coupon
     ADD CONSTRAINT FK_coupon_userId_user_id FOREIGN KEY (userId)
         REFERENCES user (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  
+CREATE TABLE Search
+(
+    `id`         INT            NOT NULL    AUTO_INCREMENT COMMENT 'id', 
+    `searchId`   INT            NOT NULL    COMMENT '검색어 id'
+    `name`       VARCHAR(45)    NOT NULL    COMMENT '검색어', 
+    `categoryId` INT            NOT NULL    COMMENT '카테고리 id', 
+    `createdAt`  TIMESTAMP      NOT NULL    DEFAULT current_timestamp COMMENT '등록날짜', 
+    `updatedAt`  TIMESTAMP      NOT NULL    DEFAULT current_timestamp COMMENT '수정날짜', 
+    `status`     INT            NOT NULL    DEFAULT 0 COMMENT '상태', 
+     PRIMARY KEY (id)
+);
 
+ALTER TABLE Search
+    ADD CONSTRAINT FK_categoryId_category_id FOREIGN KEY (categoryId)
+        REFERENCES category (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- Add column
 ALTER TABLE restaurant ADD `delCost` TEXT NOT NULL COMMENT'배달비';
