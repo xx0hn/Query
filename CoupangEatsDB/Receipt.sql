@@ -7,7 +7,7 @@ SELECT a.id AS 영수증id
 	, d.cost  AS 가격
 	, e.delCost AS 배달비
 	, CASE WHEN f.benefits IS NULL THEN 0 ELSE f.benefits END AS 할인금액
-	, CASE WHEN f.benefits IS NULL THEN d.cost + e.delCost ELSE d.cost + e.delCost - f.benefits END AS 합계
+	, CASE WHEN f.benefits IS NULL THEN d.cost * menuCount + e.delCost ELSE d.cost * menuCount + e.delCost - f.benefits END AS 합계
 	, CASE WHEN a.status = 0 THEN '결제완료' END AS 상태 
  FROM orders a
  LEFT JOIN ( SELECT id
@@ -18,14 +18,15 @@ SELECT a.id AS 영수증id
  LEFT JOIN ( SELECT cartId
 		    , menuId
 		    , restaurantId
-	       FROM cartedmenu 
-	       GROUP BY cartId ) AS c
+	       FROM cartedmenu ) AS c
 	       ON b.id = c.cartId
  LEFT JOIN ( SELECT id
 		    , name
                     , cost
                     , restaurantId
-	       FROM menu ) AS d
+	    	    , COUNT(id) AS 'menuCount'
+	       FROM menu
+	       GROUP BY id ) AS d
                ON c.menuId = d.id
  LEFT JOIN ( SELECT id
 		    , name
