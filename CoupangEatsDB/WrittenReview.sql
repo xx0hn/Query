@@ -3,6 +3,7 @@
 SELECT a.id AS 리뷰id
         , b.id AS 사용자id
         , c.name AS 식당명
+	, f.name AS 주문메뉴
         , a.score AS 별점
         , a.contents AS 리뷰내용
         , a.imageUrl AS 리뷰사진
