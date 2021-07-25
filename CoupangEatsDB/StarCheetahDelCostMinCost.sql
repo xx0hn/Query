@@ -5,9 +5,10 @@ SELECT  a.id AS 식당id
       , a.imageUrl AS 식당사진
       , a.delCost AS 배달비
       , a.delTime AS 배달시간
+      , a.delTime + 10 AS 최대배달시간
       , CASE WHEN delTime <= 30 THEN '치타배달' ELSE '일반배달' END AS 배달유형 
-      , starGrade AS 별점
-      , starCount AS 리뷰수 
+      , CASE WHEN starGrade IS NULL THEN 0 ELSE starGrade END AS 별점
+      , CASE WHEN starCount IS NULL THEN 0 ELSE starCount END AS 리뷰수 
   FROM restaurant a
   LEFT JOIN ( SELECT restaurantId
 		     , ROUND(SUM(score) / COUNT(restaurantId), 1) AS 'starGrade'
