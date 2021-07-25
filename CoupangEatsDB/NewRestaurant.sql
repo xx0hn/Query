@@ -6,6 +6,7 @@ SELECT a.id
           , a.delCost AS 배달비
           , a.imageUrl AS 식당사진
           , a.delTime AS 배달시간
+	  , a.delTime + 10 AS 최대배달시간
           , a.createdAt AS 등록시간
   FROM restaurant a
   WHERE a.createdAt > '2021-07-14 15:06:00'
