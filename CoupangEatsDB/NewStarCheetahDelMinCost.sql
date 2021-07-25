@@ -19,4 +19,3 @@ SELECT a.id AS 식당id
                 ON a.id = b.restaurantId
   WHERE a.createdAt >= '2021-07-14 15:05:00' AND a.delTime<=30 AND a.delCost <=2000 AND a.minCost <=15000
   ORDER BY starGrade DESC;
-                            
