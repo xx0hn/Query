@@ -4,11 +4,12 @@ SELECT d.name AS 검색
       , a.id AS 식당id
       , a.name AS 식당명
       , a.imageUrl AS 식당사진
-      , starGrade AS 별점
-      , starCount AS 리뷰수
+      , CASE WHEN starGrade IS NULL THEN 0 ELSE starGrade END AS 별점
+      , CASE WHEN starCount IS NULL THEN 0 ELSE starCount END AS 리뷰수
       , a.location AS 위치
       , a.delCost AS 배달비
-      , a.delTime AS 배달시
+      , a.delTime AS 배달시간
+      , a.delTime + 10 AS 최대배달시간
       , CASE WHEN a.status = 0 THEN '주문가능' ELSE '주문불가' END AS 상태 
   FROM restaurant a
   LEFT JOIN ( SELECT restaurantId
