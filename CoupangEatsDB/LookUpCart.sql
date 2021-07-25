@@ -4,6 +4,7 @@
 	    , a.location AS 사용자위치
             , d.name AS 식당명
             , e.name AS 메뉴명
+	    , COUNT(e.id) AS 수량
             , e.cost AS 가격
             , couponCount AS '사용가능쿠폰(장)'
             , SUM(e.cost) AS 주문금액
