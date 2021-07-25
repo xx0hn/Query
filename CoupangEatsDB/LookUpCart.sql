@@ -7,7 +7,7 @@
 	    , COUNT(e.id) AS 수량
             , e.cost AS 가격
             , couponCount AS '사용가능쿠폰(장)'
-            , SUM(e.cost) AS 주문금액
+            , e.cost * COUNT(e.id) AS 주문금액
             , d.delCost AS 배달비
             , SUM(e.cost) + d.delCost AS 총결제금액
    FROM user a
