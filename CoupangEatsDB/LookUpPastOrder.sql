@@ -36,4 +36,4 @@ SELECT f.name AS 식당명
                 GROUP BY id, name, imageUrl) AS f
                 ON f.id = d.restaurantId
  WHERE b.id = 1 AND f.name IS NOT NULL
- ORDER BY a.updatedAt DESC;
+ ORDER BY  a.updatedAt DESC;
